@@ -11,7 +11,7 @@ WORKDIR /module
 ADD ./vendor /vendor
 RUN bundle install
 
-ENV TERRAFORM_VERSION=0.9.8
+ENV TERRAFORM_VERSION=0.9.11
 
 RUN curl -Ls https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform.zip && \
     unzip terraform.zip -d /usr/local/bin && \
