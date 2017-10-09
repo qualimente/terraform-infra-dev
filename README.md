@@ -3,6 +3,8 @@
 This repository provides a docker image for authoring and executing tests
 for Terraform modules.
 
+[![CircleCI](https://circleci.com/gh/qualimente/terraform-spec.svg?style=svg)](https://circleci.com/gh/qualimente/terraform-spec)
+
 ## Testing Terraform Modules
 
 Terraform modules are testing using the 
