@@ -8,7 +8,7 @@ ENV BUNDLE_GEMFILE /vendor/Gemfile
 ENTRYPOINT ["bundle", "exec"]
 WORKDIR /module
 
-ADD ./vendor /vendor
+COPY vendor /vendor
 RUN bundle install
 
 ENV TERRAFORM_VERSION=0.9.11
