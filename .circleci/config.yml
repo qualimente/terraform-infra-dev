@@ -22,10 +22,14 @@ jobs:
       - deploy:
           name: Deploy image to Docker Hub
           command: |
+            source $BASH_ENV
             beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
             if beginswith v "$CIRCLE_TAG" || [ ${CIRCLE_BRANCH} == "master" ]; then
               echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USER}" --password-stdin
-              docker push qualimente/terraform-spec:latest
+              for tag in latest "${BUILD_ID}"
+              do
+                docker push qualimente/terraform-spec:${tag}
+              done;
             else
               echo "Skipping deploy"
             fi
