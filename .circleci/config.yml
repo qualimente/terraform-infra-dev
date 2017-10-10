@@ -7,15 +7,24 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: set BUILD_ID
+          command: |
+            BUILD_TIMESTAMP_UTC=$(date -u +'%Y%m%d-%H%M')
+            BUILD_COMMIT_SHORT=$(git rev-parse --short HEAD)
+            echo "export BUILD_COMMIT_SHORT=${BUILD_COMMIT_SHORT}" >> $BASH_ENV
+            echo "export BUILD_TIMESTAMP_UTC=${BUILD_TIMESTAMP_UTC}" >> $BASH_ENV
+            echo "export BUILD_ID=${BUILD_TIMESTAMP_UTC}-${BUILD_COMMIT_SHORT}" >> $BASH_ENV
+      - run:
           name: Build application Docker image
           command: |
-            docker build --cache-from=qualimente/terraform-spec:latest -t qualimente/terraform-spec:latest .
+            source $BASH_ENV
+            docker build --cache-from=qualimente/terraform-spec:latest -t qualimente/terraform-spec:latest -t qualimente/terraform-spec:${BUILD_ID} .
       - deploy:
           name: Deploy image to Docker Hub
           command: |
             beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
             if beginswith v "$CIRCLE_TAG" || [ ${CIRCLE_BRANCH} == "master" ]; then
-              echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USER} --password-stdin
+              echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USER}" --password-stdin
               docker push qualimente/terraform-spec:latest
             else
               echo "Skipping deploy"
