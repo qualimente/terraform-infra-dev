@@ -18,7 +18,7 @@ jobs:
           name: Build application Docker image
           command: |
             source $BASH_ENV
-            docker build --cache-from=qualimente/terraform-spec:latest -t qualimente/terraform-spec:latest -t qualimente/terraform-spec:${BUILD_ID} .
+            docker build --cache-from=qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:${BUILD_ID} .
       - deploy:
           name: Deploy image to Docker Hub
           command: |
@@ -28,7 +28,7 @@ jobs:
               echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USER}" --password-stdin
               for tag in latest "${BUILD_ID}"
               do
-                docker push qualimente/terraform-spec:${tag}
+                docker push qualimente/terraform-infra-dev:${tag}
               done;
             else
               echo "Skipping deploy"
