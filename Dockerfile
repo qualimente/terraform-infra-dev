@@ -12,6 +12,12 @@ WORKDIR /module
 COPY vendor /vendor
 RUN bundle install
 
+ENV TFLINT_VERSION=v0.5.1
+
+RUN curl -Ls "https://github.com/wata727/tflint/releases/download/${TFLINT_VERSION}/tflint_linux_amd64.zip" -o tflint.zip && \
+    unzip tflint.zip -d /usr/local/bin && \
+    rm -f tflint.zip
+
 ENV TERRAFORM_VERSION=0.9.11
 
 RUN curl -Ls "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -o terraform.zip && \
