@@ -1,11 +1,18 @@
-# Terraform-Spec
+# terraform-infra-dev
 
-This repository provides a docker image for authoring and executing tests
-for Terraform modules.
+terraform-infra-dev provides a docker image for suitable for developing high-quality terraform modules using a collection of utilities.
 
 [![CircleCI](https://circleci.com/gh/qualimente/terraform-infra-dev.svg?style=svg)](https://circleci.com/gh/qualimente/terraform-infra-dev)
 
-## Testing Terraform Modules
+## High Quality Terraform Builds
+
+terraform-infra-dev provides several tools for creating a high-quality infrastructura delivery lifecycle (IDLC) based-on terraform.
+
+### Linting ###
+
+Linting of Terraform Code is available via [tflint](https://github.com/wata727/tflint)
+
+### Testing ###
 
 Terraform modules are testing using the 
 [Kitchen-Terraform](https://github.com/newcontext-oss/kitchen-terraform)
@@ -39,7 +46,7 @@ repository. To support this, the build processes relies on your GitHub
 credentials being located in your `~/.netrc` file. 
 This file should be volume mounted into the `terrraform-spec` container
 to make them available for the test process.
-The `terraform-spec` container is configured to have Git automatically 
+The `terraform-infra-dev` container is configured to have Git automatically 
 override any `ssh` clone URLs to use HTTPS instead. 
 
 ```
@@ -59,3 +66,11 @@ password <password or personal token if MFA is enabled>
 
 **NOTE**: if MFA is enabled on your GitHub account, then you **must** create a 
 personal access token and use that as the password in the `~/.netrc` file.
+
+# Thanks #
+
+terraform-infra-dev is built on top of the great work of:
+
+* John Rengelman's [terraform-spec](https://github.com/johnrengelman/terraform-spec)
+* uzyexe's [serverspec](https://github.com/uzyexe/dockerfile-serverspec)
+ 
