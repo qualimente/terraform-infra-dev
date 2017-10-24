@@ -24,4 +24,4 @@ suites:
         test/fixtures/default
       variables:
         user: <%= ENV['USER'] %>
-        build_number: <%= ENV['DRONE_BUILD_NUMBER'] %>
+        build_number: <%= ENV['BUILD_NUMBER'] %>
