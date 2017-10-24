@@ -44,7 +44,7 @@ module "base" {
 Some modules may use a nested module source that refers to a private GitHub 
 repository. To support this, the build processes relies on your GitHub 
 credentials being located in your `~/.netrc` file. 
-This file should be volume mounted into the `terrraform-spec` container
+This file should be volume mounted into the `terrraform-infra-dev` container
 to make them available for the test process.
 The `terraform-infra-dev` container is configured to have Git automatically 
 override any `ssh` clone URLs to use HTTPS instead. 
