@@ -82,7 +82,7 @@ test:
 	@$(call kitchen,test)
 
 docs:
-	@$(call terraform-docs,)
+	@$(call terraform-docs,markdown interface.tf)
 
 kitchen:
 	@$(call kitchen,$(COMMAND))
