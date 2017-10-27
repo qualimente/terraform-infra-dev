@@ -10,6 +10,8 @@ terraform = @$(call execute,terraform $(1) $(TERRAFORM_OPTS))
 
 tflint = @$(call execute,tflint $(1))
 
+terraform-docs = @$(call execute,terraform-docs $(1))
+
 KITCHEN_OPTS :=
 kitchen = @$(call execute,bundle exec kitchen $(1) $(KITCHEN_OPTS))
 
@@ -79,10 +81,13 @@ destroy:
 test:
 	@$(call kitchen,test)
 
+docs:
+	@$(call terraform-docs,)
+
 kitchen:
 	@$(call kitchen,$(COMMAND))
 
-all: deps init format lint converge verify
+all: deps init format lint converge verify docs
 
 # stub for defining your own ci target
 #ci:
