@@ -12,11 +12,17 @@ WORKDIR /module
 COPY vendor /vendor
 RUN bundle install
 
+ENV TERRAFORM_DOCS_VERSION=0.3.0
+
+RUN curl -Ls "https://github.com/segmentio/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs_linux_amd64" -o /usr/local/bin/terraform-docs && \
+    chmod 755 /usr/local/bin/terraform-docs
+
 ENV TFLINT_VERSION=v0.5.1
 
 RUN curl -Ls "https://github.com/wata727/tflint/releases/download/${TFLINT_VERSION}/tflint_linux_amd64.zip" -o tflint.zip && \
     unzip tflint.zip -d /usr/local/bin && \
     rm -f tflint.zip
+
 
 ENV TERRAFORM_VERSION=0.9.11
 
