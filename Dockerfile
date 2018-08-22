@@ -1,7 +1,7 @@
 FROM uzyexe/serverspec:2.37.2
 
 RUN apk update && \
-    apk -Uuv add curl make bash gcc build-base abuild binutils git openssh less groff python python-dev py-pip && \
+    apk -Uuv add curl make bash gcc build-base abuild binutils git openssh less groff python python-dev py-pip jq && \
     pip install awscli && \
     rm -rf /var/cache/apk/*
 
