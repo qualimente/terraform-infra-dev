@@ -1,0 +1,14 @@
+schemaVersion: "2.0.0"
+
+# Verify the expected version of Java is available and executable
+commandTests:
+  - name: "Terraform version"
+    command: "terraform"
+    args: ["version"]
+    exitCode: 0
+    # Terraform version will print a line like to stdout:
+    # Terraform v0.11.10
+    #
+    #Your version of Terraform is out of date! The latest version
+    #is 0.11.11. You can update by downloading from www.terraform.io/downloads.html
+    expectedOutput: ["Terraform v0.11.10"]

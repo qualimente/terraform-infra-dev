@@ -19,6 +19,23 @@ jobs:
           command: |
             source $BASH_ENV
             docker build --cache-from=qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:${BUILD_ID} .
+      - run:
+          name: Test Docker image
+          command: |
+            source $BASH_ENV
+            #  Cannot bind-mount files in CircleCI, so the obvious solution does not work:
+            # -v ${CIRCLE_WORKING_DIRECTORY}/structure-tests.yaml:/structure-tests.yaml
+            # https://circleci.com/docs/2.0/building-docker-images/#mounting-folders
+            # Fine, use the data-packed container pattern:
+            # create a container, copy the test file into it, mount that as a volume.
+            docker container create -v /tests --name test-assets alpine:3.8 /bin/true
+            docker container cp structure-tests.yaml test-assets:/tests/structure-tests.yaml
+            docker container run --rm -it \
+              -v /var/run/docker.sock:/var/run/docker.sock:ro \
+              --volumes-from test-assets \
+              gcr.io/gcp-runtimes/container-structure-test:v1.6.0 test \
+              --image qualimente/terraform-infra-dev:${BUILD_ID} \
+              --config /tests/structure-tests.yaml
       - deploy:
           name: Deploy image to Docker Hub
           command: |
