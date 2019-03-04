@@ -18,7 +18,13 @@ commandTests:
     args: ["help", "--no-color"]
     exitCode: 0
 
-  - name: "terraform-docs"
-    command: "terraform-docs"
-    args: ["--help"]
+  - name: "awspec"
+    command: "gem"
+    args: ["list"]
     exitCode: 0
+    expectedOutput: [
+    "awspec \\(0.87.1",
+    "kitchen-terraform \\(",
+    "kitchen-verifier-awspec \\("
+    ]
+    
