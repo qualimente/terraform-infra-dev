@@ -15,7 +15,7 @@ jobs:
             echo "export BUILD_TIMESTAMP_UTC=${BUILD_TIMESTAMP_UTC}" >> $BASH_ENV
             echo "export BUILD_ID=${BUILD_TIMESTAMP_UTC}-${BUILD_COMMIT_SHORT}" >> $BASH_ENV
       - run:
-          name: Build application Docker image
+          name: Build Docker image
           command: |
             source $BASH_ENV
             docker build --cache-from=qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:${BUILD_ID} .
@@ -37,7 +37,7 @@ jobs:
               --image qualimente/terraform-infra-dev:${BUILD_ID} \
               --config /tests/structure-tests.yaml
       - deploy:
-          name: Deploy image to Docker Hub
+          name: Publish Docker image to Docker Hub
           command: |
             source $BASH_ENV
             beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
