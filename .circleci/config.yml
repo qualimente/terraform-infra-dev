@@ -18,7 +18,7 @@ jobs:
           name: Build Docker image
           command: |
             source $BASH_ENV
-            docker build --cache-from=qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:${BUILD_ID} .
+            docker image build --cache-from=qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:latest -t qualimente/terraform-infra-dev:${BUILD_ID} .
       - run:
           name: Test Docker image
           command: |
@@ -45,7 +45,7 @@ jobs:
               echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USER}" --password-stdin
               for tag in latest "${BUILD_ID}"
               do
-                docker push qualimente/terraform-infra-dev:${tag}
+                docker image push qualimente/terraform-infra-dev:${tag}
               done;
             else
               echo "Skipping deploy"
