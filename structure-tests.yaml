@@ -7,11 +7,11 @@ commandTests:
     args: ["version"]
     exitCode: 0
     # Terraform version will print a line like to stdout:
-    # Terraform v0.11.10
+    # Terraform v0.11.14
     #
     #Your version of Terraform is out of date! The latest version
-    #is 0.11.11. You can update by downloading from www.terraform.io/downloads.html
-    expectedOutput: ["Terraform v0.11.10"]
+    #is 0.11.whatever. You can update by downloading from www.terraform.io/downloads.html
+    expectedOutput: ["Terraform v0.11.14"]
 
   - name: "bundle"
     command: "bundle"

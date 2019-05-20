@@ -4,4 +4,5 @@ gem 'test-kitchen', '1.16.0'
 gem 'kitchen-terraform', '3.0.0'
 gem 'awspec', '0.87.1'
 gem 'kitchen-verifier-awspec', '0.1.0'
+gem 'dry-validation', '0.13.0'
 gem 'terraform-utils', :path => "/vendor/gems/terraform-utils"
