@@ -11,7 +11,7 @@ commandTests:
     #
     #Your version of Terraform is out of date! The latest version
     #is 0.11.whatever. You can update by downloading from www.terraform.io/downloads.html
-    expectedOutput: ["Terraform v0.11.14"]
+    expectedOutput: ["Terraform v0.12.29"]
 
   - name: "bundle"
     command: "bundle"
@@ -23,8 +23,7 @@ commandTests:
     args: ["list"]
     exitCode: 0
     expectedOutput: [
-    "awspec \\(0.87.1",
-    "kitchen-terraform \\(",
-    "kitchen-verifier-awspec \\("
+    "awspec \\(1.22.0",
+    "kitchen-terraform \\("
     ]
     
