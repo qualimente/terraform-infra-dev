@@ -27,3 +27,8 @@ commandTests:
     "kitchen-terraform \\("
     ]
     
+  - name: "terraform-docs"
+    command: "terraform-docs"
+    args: ["--help"]
+    exitCode: 0
+

@@ -22,7 +22,6 @@ WORKDIR /module
 COPY vendor /vendor
 RUN bundle install
 
-ENV TERRAFORM_DOCS_VERSION=0.10.0
-
-RUN curl -Ls "https://github.com/segmentio/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs_linux_amd64" -o /usr/local/bin/terraform-docs && \
+ENV TERRAFORM_DOCS_VERSION=0.10.1
+RUN curl -Ls "https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64" -o /usr/local/bin/terraform-docs && \
     chmod 755 /usr/local/bin/terraform-docs
