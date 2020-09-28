@@ -1,7 +1,7 @@
 FROM hashicorp/terraform:0.12.29
 
 ENV PACKAGES abuild binutils bash build-base curl-dev make gcc git openssh less groff jq \
-             ruby ruby-dev ruby-io-console ruby-bundler \
+             ruby ruby-dev ruby-io-console ruby-bundler ruby-webrick \
              python3 python3-dev py-pip
 
 # Update and install all required packages; remove package cache to keep it out of the image layer

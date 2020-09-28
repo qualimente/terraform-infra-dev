@@ -1,5 +1,6 @@
 source "https://rubygems.org/" do
   gem 'kitchen-terraform', '5.5.0'
+  gem 'awspec', '1.22.0'
   gem 'rbnacl'
   gem 'bigdecimal'
 end
