@@ -6,7 +6,7 @@ terraform-infra-dev provides a docker image for suitable for developing high-qua
 
 ## High Quality Terraform Builds
 
-terraform-infra-dev provides several tools for creating a high-quality infrastructura delivery lifecycle (IDLC) based-on terraform.
+terraform-infra-dev provides several tools for creating a high-quality infrastructure delivery lifecycle (IDLC) based-on terraform.
 
 ### Testing ###
 
