@@ -27,6 +27,12 @@ This is used to retrieve the physical IDs of resources to be used with `AWSpec`.
 Terraform, kitchen, ruby, terraform-kitchen, awspec, and terraform-utils are
 installed together into this container image.
 
+### Documentation ###
+
+Document your Terraform modules with [terraform-docs](https://github.com/terraform-docs/terraform-docs).
+`terraform-docs` reads your module's code and generates documentation from variable and output declarations into
+the format of your choice.  
+
 ## Overriding Git clone URLs
 
 Some modules may be configured to clone nested modules using the `ssh` protocol.
