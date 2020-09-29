@@ -8,10 +8,6 @@ terraform-infra-dev provides a docker image for suitable for developing high-qua
 
 terraform-infra-dev provides several tools for creating a high-quality infrastructura delivery lifecycle (IDLC) based-on terraform.
 
-### Linting ###
-
-Linting of Terraform Code is available via [tflint](https://github.com/wata727/tflint)
-
 ### Testing ###
 
 Terraform modules are testing using the 
