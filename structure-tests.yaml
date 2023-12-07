@@ -11,22 +11,8 @@ commandTests:
     #
     #Your version of Terraform is out of date! The latest version
     #is 0.11.whatever. You can update by downloading from www.terraform.io/downloads.html
-    expectedOutput: ["Terraform v0.12.29"]
+    expectedOutput: ["Terraform v0.13.7"]
 
-  - name: "bundle"
-    command: "bundle"
-    args: ["help", "--no-color"]
-    exitCode: 0
-
-  - name: "awspec"
-    command: "gem"
-    args: ["list"]
-    exitCode: 0
-    expectedOutput: [
-    "awspec \\(1.22.0",
-    "kitchen-terraform \\("
-    ]
-    
   - name: "terraform-docs"
     command: "terraform-docs"
     args: ["--help"]

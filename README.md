@@ -10,22 +10,9 @@ terraform-infra-dev provides several tools for creating a high-quality infrastru
 
 ### Testing ###
 
-Terraform modules are testing using the 
-[Kitchen-Terraform](https://github.com/newcontext-oss/kitchen-terraform)
-test framework.
-This framework provides a custom `driver`, `provisioner`, and `verify` for
-[Test Kitchen](http://kitchen.ci/) that integrations Terraform into the
-test flow.
-Specs are written using the [InSpec](http://inspec.io/) framework along with
-the [AWSpec](https://github.com/k1LoW/awspec) library.
-Additionally, a small utility library, 
-[terraform-utils](https://github.com/johnrengelman/terraform-spec/tree/vendor/gems/terraform-utils),
-is added to the runtime container and provides methods for loading and parsing
-the Terraform state file.
-This is used to retrieve the physical IDs of resources to be used with `AWSpec`.
+The kitchen-terraform test tool support has been removed due to issues resolving/building dependencies. 
 
-Terraform, kitchen, ruby, terraform-kitchen, awspec, and terraform-utils are
-installed together into this container image.
+It will be replaced by a tool suitable for use with modern Terraform/OpenTofu.
 
 ### Documentation ###
 
@@ -68,6 +55,27 @@ password <password or personal token if MFA is enabled>
 
 **NOTE**: if MFA is enabled on your GitHub account, then you **must** create a 
 personal access token and use that as the password in the `~/.netrc` file.
+
+## Local development and testing
+Build the container image locally with a command like:
+
+```
+docker build -t terraform-infra-dev:latest .
+```
+
+Then you can run the structure tests with:
+
+```
+# note (2023-12-06): container-structure-test is only available for linux/amd64
+
+docker container run --rm -it \
+  --platform linux/amd64 \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  -v $PWD/structure-tests.yaml:/tests/structure-tests.yaml \
+  gcr.io/gcp-runtimes/container-structure-test:v1.16.0 \
+  test --image terraform-infra-dev:latest --config /tests/structure-tests.yaml
+```
+
 
 # Thanks #
 

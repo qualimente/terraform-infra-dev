@@ -33,7 +33,7 @@ jobs:
             docker container run --rm -it \
               -v /var/run/docker.sock:/var/run/docker.sock:ro \
               --volumes-from test-assets \
-              gcr.io/gcp-runtimes/container-structure-test:v1.6.0 test \
+              gcr.io/gcp-runtimes/container-structure-test:v1.16.0 test \
               --image qualimente/terraform-infra-dev:${BUILD_ID} \
               --config /tests/structure-tests.yaml
       - deploy:
