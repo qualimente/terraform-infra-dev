@@ -4,6 +4,10 @@ jobs:
     docker:
       - image: docker:17.09.0-ce-git
     steps:
+      - run:
+          name: update known_hosts with github keys
+          command: |
+            ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - checkout
       - setup_remote_docker
       - run:
