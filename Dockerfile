@@ -15,7 +15,7 @@ RUN pip install awscli
 
 RUN git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT []
 WORKDIR /module
 
 ENV TERRAFORM_DOCS_VERSION=0.10.1
