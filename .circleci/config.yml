@@ -5,9 +5,10 @@ jobs:
       - image: docker:17.09.0-ce-git
     steps:
       - run:
-          name: update known_hosts with github keys
+          name: Update docker container to work with modern GitHub certificates
           command: |
             ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+            git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
       - checkout
       - setup_remote_docker
       - run:
