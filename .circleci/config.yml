@@ -2,13 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: docker:17.09.0-ce-git
+      - image: cimg/base:2023.12
     steps:
-      - run:
-          name: Update docker container to work with modern GitHub certificates
-          command: |
-            ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-            git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
       - checkout
       - setup_remote_docker
       - run:
